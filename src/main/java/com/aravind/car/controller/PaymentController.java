@@ -82,11 +82,7 @@ public class PaymentController {
 		return msg;
 
 	}
-//
-//	@GetMapping("{userId}")
-//	public Optional<Payment> getPaymentByUserId(@PathVariable int userId) {
-//		return service.getPaymentByUserId(userId);
-//	}
+
 
 	@PutMapping("/{payId}")
 	public String updatePayment(@PathVariable("payId") int payId, @RequestBody Payment updateRequest) {

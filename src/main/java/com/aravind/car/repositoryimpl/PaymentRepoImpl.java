@@ -76,8 +76,7 @@ public class PaymentRepoImpl implements PaymentRepo {
 
 	@Override
 	public String updatePaymentDetails(int payId, Payment updateRequest) {
-		
-		
+
 		System.err.println(updateRequest);
 		try {
 			Payment existingPayment = entityManager.find(Payment.class, payId);
@@ -91,7 +90,7 @@ public class PaymentRepoImpl implements PaymentRepo {
 				if (updateRequest.getPayDate() != null) {
 					existingPayment.setPayDate(updateRequest.getPayDate());
 				}
-				
+
 				System.err.println(existingPayment.getPayId());
 				entityManager.merge(existingPayment); // Update the entity
 				return "Success";

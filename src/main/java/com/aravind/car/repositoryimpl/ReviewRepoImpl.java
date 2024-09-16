@@ -19,7 +19,7 @@ public class ReviewRepoImpl implements ReviewRepo {
 
 	@Autowired
 	EntityManager entityManager;
-	
+
 	@Autowired
 	RideRepo rideRepo;
 

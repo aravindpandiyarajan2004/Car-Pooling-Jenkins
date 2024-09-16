@@ -38,7 +38,7 @@ public class BookingController {
 
 	@Autowired
 	PaymentServiceImpl paymentService;
-	
+
 	@Autowired
 	RideServiceImpl rideService;
 
@@ -54,39 +54,10 @@ public class BookingController {
 	static final String SUCCESS = "Success";
 	static final String FAILURE = "Failure";
 
-//	@PostMapping
-//	public String insertBooking(@RequestBody Booking booking) {
-//
-//		String msg = "";
-//
-//		try {
-//			service.addBooking(booking);
-//			msg = SUCCESS;
-//		} catch (Exception e) {
-//			msg = FAILURE;
-//		}
-//
-//		return msg;
-//	}
 	@PostMapping
 	public ResponseEntity<Response> insertBooking(@RequestBody Booking booking) {
 		return service.addBooking(booking);
 	}
-
-//	@PostMapping("/booking")
-//	public ResponseEntity<Map<String, Object>> insertBooking(@RequestBody Booking booking) {
-//		Map<String, Object> response = new HashMap<>();
-//		String msg;
-//		try {
-//			Booking createdBooking = service.addBooking(booking);
-//			response.put("message", "success");
-//			response.put("bookingId", createdBooking.getBookingId()); // Include the bookingId
-//			return ResponseEntity.ok(response);
-//		} catch (Exception e) {
-//			response.put("message", "failure");
-//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-//		}
-//	}
 
 	@GetMapping("{bookingId}")
 	public Booking getBookingById(@PathVariable("bookingId") int id) {
@@ -129,25 +100,6 @@ public class BookingController {
 
 	}
 
-//	@PutMapping("bookingStatus/{id}")
-//	public ResponseEntity<Response> updateBookingStatus(@PathVariable int id, @RequestBody Booking updatedBooking) {
-//		Booking existingBooking = service.getBooking(id);
-//		if (existingBooking != null) {
-//			existingBooking.setBookingStatus(updatedBooking.getBookingStatus());
-//			return service.addBooking(existingBooking);
-//		}
-//		return null;
-//	}
-
-//	@GetMapping("/{userId}")
-//	public ResponseEntity<List<Booking>> getBookingsByUserId(@PathVariable int userId) {
-//		List<Booking> bookings = service.getBookingsByUserId(userId);
-//		if (bookings.isEmpty()) {
-//			return ResponseEntity.noContent().build(); // Return 204 No Content if no bookings found
-//		}
-//		return ResponseEntity.ok(bookings);
-//	}
-
 	@GetMapping("/user/{userId}")
 	public ResponseEntity<List<Booking>> getBookingsByUserId(@PathVariable("userId") int userId) {
 		List<Booking> bookings = service.getBookingsByUserId(userId);
@@ -158,23 +110,6 @@ public class BookingController {
 		}
 	}
 
-//	@PostMapping("{bookingId}/payments")
-//    public ResponseEntity<String> addPaymentToBooking(
-//            @PathVariable("bookingId") int bookingId,
-//            @RequestBody Payment payment) {
-//
-//        String paymentResult = paymentService.addPayment(payment);
-//        if (!"Success".equals(paymentResult)) {
-//            return ResponseEntity.status(500).body("Failed to save payment");
-//        }
-//
-//        String updateResult = service.updateBookingWithPayment(bookingId, payment);
-//        if ("Booking updated with payment".equals(updateResult)) {
-//            return ResponseEntity.ok(updateResult);
-//        } else {
-//            return ResponseEntity.status(404).body("Booking not found");
-//        }
-//    }
 	@PostMapping("/{bookingId}/payments")
 	public ResponseEntity<String> addPaymentToBooking(@PathVariable("bookingId") int bookingId,
 			@RequestBody Payment payment) {
@@ -205,19 +140,6 @@ public class BookingController {
 		}
 	}
 
-//	@GetMapping("/search")
-//	public ResponseEntity<List<Booking>> searchBookings(
-//			@RequestParam(value = "bookingId", required = false) Integer bookingId,
-//			@RequestParam(value = "userId", required = false) Integer userId) {
-//		List<Booking> bookings = service.getBookingsByBookingIdOrUserId(bookingId != null ? bookingId : 0,
-//				userId != null ? userId : 0);
-//		if (bookings != null && !bookings.isEmpty()) {
-//			return ResponseEntity.ok(bookings);
-//		} else {
-//			return ResponseEntity.noContent().build();
-//		}
-//	}
-
 	@PutMapping("/bookingStatus/{bookingId}")
 	public ResponseEntity<String> updateBookingStatus(@PathVariable int bookingId,
 			@RequestBody Map<String, String> statusUpdate) {
@@ -232,7 +154,7 @@ public class BookingController {
 		// Update the booking status
 		booking.setBookingStatus(newStatus);
 		bookingRepo.save(booking);
-		
+
 		System.err.println("Booking Updated...");
 
 		// Fetch the associated user

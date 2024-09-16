@@ -29,26 +29,6 @@ public class BookingServiceImpl implements BookingService {
 		return bookingRepo.update(booking);
 	}
 
-//	@Override
-//	public String addBooking(Booking booking) {
-//		// Calculate amount before saving the booking
-//		if (booking.getRide() != null) {
-//			double amount = calculateAmount(booking.getRequestedSeats(), booking.getRide());
-//			booking.setAmount(amount);
-//		}
-//		bookingRepo.save(booking);
-//		return "Booking added successfully";
-//	}
-//
-//	@Override
-//	public String updateBooking(Booking booking) {
-//		if (booking.getRide() != null) {
-//			double amount = calculateAmount(booking.getRequestedSeats(), booking.getRide());
-//			booking.setAmount(amount);
-//		}
-//		bookingRepo.save(booking); // Assumes save method handles update
-//		return "Booking updated successfully";
-//	}
 
 	@Override
 	public String deleteBooking(int bookingId) {

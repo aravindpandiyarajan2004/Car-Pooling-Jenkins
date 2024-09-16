@@ -41,7 +41,7 @@ public class VehicleServiceImpl implements VehicleService {
 	}
 
 	public List<Vehicle> getVehiclesByUserId(int userId) {
-		 return vehicleRepo.findByUserId(userId);
+		return vehicleRepo.findByUserId(userId);
 	}
 
 }

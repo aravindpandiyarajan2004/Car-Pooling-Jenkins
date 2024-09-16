@@ -26,31 +26,12 @@ public class ReviewController {
 
 	@Autowired
 	ReviewServiceImpl service;
-	
-	@Autowired 
+
+	@Autowired
 	RideRepo rideRepo;
-	
-	
 
 	static final String SUCCESS = "Success";
 	static final String FAILURE = "Failure";
-
-//	@PostMapping
-//	public String insertReview(@RequestBody Review review) {
-//		
-//		String msg = "";
-//
-//		try {
-//			service.addReview(review);
-//			
-//			System.out.print(review);
-//			msg = SUCCESS;
-//		} catch (Exception e) {
-//			msg = FAILURE;
-//		}
-//
-//		return msg;
-//	}
 
 	@PostMapping
 	public String insertReview(@RequestParam("rating") int rating, @RequestParam("review") String review,
@@ -60,7 +41,7 @@ public class ReviewController {
 		try {
 			// Create a new Review object using the request parameters
 			Review reviewObj = new Review();
-			//reviewObj.setRating((int) rating);
+			// reviewObj.setRating((int) rating);
 			reviewObj.setRating(rideId);
 			reviewObj.setReview(review);
 

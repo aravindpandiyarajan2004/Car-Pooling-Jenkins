@@ -33,21 +33,6 @@ public class RideController {
 	static final String SUCCESS = "Success";
 	static final String FAILURE = "Failure";
 
-//	@PostMapping
-//	public String insertRide(@RequestBody Ride ride) {
-//
-//		String msg = "";
-//
-//		try {
-//			service.addRide(ride);
-//			msg = SUCCESS;
-//		} catch (Exception e) {
-//			msg = FAILURE;
-//		}
-//
-//		return msg;
-//	}
-
 	@Autowired
 	private UserRepo userRepo; // Repository for fetching User entities
 

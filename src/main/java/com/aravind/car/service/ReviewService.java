@@ -16,6 +16,5 @@ public interface ReviewService {
 
 	public Review getReview(int reviewId);
 
-	//String addReview(Review review, int rideId);
 
 }

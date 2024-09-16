@@ -80,17 +80,6 @@ public class UserRepoImpl implements UserRepo {
 
 	}
 
-//	@Override
-//	public User findByEmailAndPassword(String email, String password) {
-//		String jpql = "SELECT u FROM User u WHERE u.email = :email AND u.password = :password AND u.accountStatus != 'Pending'";
-//		TypedQuery<User> query = entityManager.createQuery(jpql, User.class);
-//		query.setParameter("email", email);
-//		query.setParameter("password", password);
-//		System.out.println(query.getResultStream().findFirst());
-//		return query.getResultStream().findFirst().orElse(null);
-//	    
-//	}
-
 	@Override
 	public User findByEmailAndPassword(String email, String password) {
 		String jpql = "SELECT u FROM User u WHERE u.email = :email AND u.password = :password";

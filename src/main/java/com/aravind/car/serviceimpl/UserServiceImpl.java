@@ -41,12 +41,6 @@ public class UserServiceImpl implements UserService {
 		return userRepo.findById(userId);
 	}
 
-//	@Override
-//	public User login(String email, String password) {
-//		User user = userRepo.findByEmailAndPassword(email, password);
-//		return user != null ? user : null;
-//	}
-
 	public User login(String email, String password) {
 		User user = userRepo.findByEmailAndPassword(email, password);
 		if (user != null && ("Pending".equals(user.getAccountStatus()) || "Rejected".equals(user.getAccountStatus()))) {
@@ -54,18 +48,15 @@ public class UserServiceImpl implements UserService {
 		}
 		return user;
 	}
-	
+
 	@Override
-    public User findUserByEmail(String email) {
-        return userRepo.findByEmail(email);
-    }
+	public User findUserByEmail(String email) {
+		return userRepo.findByEmail(email);
+	}
 
 	@Override
 	public List<User> findUserStatus(String accountStatus) {
 		return userRepo.findAllByStatus(accountStatus);
 	}
-	
-	
-	
 
 }

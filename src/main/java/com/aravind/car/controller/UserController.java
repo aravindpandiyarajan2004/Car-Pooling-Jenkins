@@ -44,82 +44,6 @@ public class UserController {
 	static final String SUCCESS = "Success";
 	static final String FAILURE = "Failure";
 
-//	@PostMapping("/login")
-//	public User login(@RequestBody User user) {
-//		return service.login(user.getEmail(), user.getPassword());
-//	}
-
-//	@PostMapping("/login")
-//    public ResponseEntity<?> loginUser(@RequestBody User user) {
-//        String email = user.getEmail();
-//        String password = user.getPassword();
-//
-//        if (email == null || email.isEmpty()) {
-//            return ResponseEntity.badRequest().body("Email is required.");
-//        }
-//        if (password == null || password.isEmpty()) {
-//            return ResponseEntity.badRequest().body("Password is required.");
-//        }
-//
-//        try {
-//            User authenticatedUser = service.login(email, password);
-//
-//            if (authenticatedUser == null) {
-//                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password.");
-//            }
-//
-//            // Since the repository method already filters out 'Pending' status,
-//            // this check is redundant but could be added for completeness
-//            if ("Pending".equals(authenticatedUser.getAccountStatus())) {
-//                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Your registration is under progress. Once completed, you will be able to login.");
-//            }
-//
-//            return ResponseEntity.ok(authenticatedUser);
-//
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred. Please try again later.");
-//        }
-//    }
-
-//	@PostMapping("/login")
-//	public ResponseEntity<?> loginUser(@RequestBody User user) {
-//		String email = user.getEmail();
-//		String password = user.getPassword();
-//
-//		// Validate email and password
-//		if (email == null || email.trim().isEmpty()) {
-//			return ResponseEntity.badRequest().body("Email is required.");
-//		}
-//		if (password == null || password.trim().isEmpty()) {
-//			return ResponseEntity.badRequest().body("Password is required.");
-//		}
-//
-//		try {
-//			// Attempt to find the user
-//			User authenticatedUser = service.login(email, password);
-//
-//			if (authenticatedUser == null) {
-//				// If user is not found, check if the credentials are correct
-//				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password.");
-//			}
-//
-//			// Check account status
-//			if ("Pending".equals(authenticatedUser.getAccountStatus())) {
-//				return ResponseEntity.status(HttpStatus.FORBIDDEN)
-//						.body("Your registration is under progress. Once completed, you will be able to login.");
-//			}
-//
-//			// If all checks pass, return the user
-//			return ResponseEntity.ok(authenticatedUser);
-//
-//		} catch (Exception e) {
-//			// Log the exception for debugging purposes
-//			e.printStackTrace();
-//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-//					.body("An error occurred. Please try again later.");
-//		}
-//	}
-
 	@PostMapping("/login")
 	public ResponseEntity<?> loginUser(@RequestBody User user) {
 		String email = user.getEmail();
@@ -136,10 +60,6 @@ public class UserController {
 			User authenticatedUser = service.login(email, password);
 
 			if (authenticatedUser == null) {
-				// If authenticatedUser is null, it means either the credentials were wrong or
-				// the account status is pending.
-				// Since we need to differentiate between invalid credentials and pending
-				// status, we need an additional check.
 				User userWithPendingStatus = userRepo.findByEmail(email);
 				if (userWithPendingStatus != null && "Pending".equals(userWithPendingStatus.getAccountStatus())) {
 					return ResponseEntity.status(HttpStatus.FORBIDDEN)
@@ -274,5 +194,5 @@ public class UserController {
 					.body("Failed to send email: " + e.getMessage());
 		}
 	}
- 
+
 }

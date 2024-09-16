@@ -30,7 +30,7 @@ public class RideRepoImpl implements RideRepo {
 		if (ride != null) {
 			System.out.println(ride.getUser().getUserId());
 			System.out.println(ride.getVehicle().getVehicleId());
-			
+
 			entityManager.merge(ride);
 			return "Success";
 		} else {
@@ -76,14 +76,6 @@ public class RideRepoImpl implements RideRepo {
 		Ride ride = entityManager.find(Ride.class, rideId);
 		return ride != null && ride.getAvailableSeats() >= requestedSeats;
 	}
-
-//	@Override
-//	public List<Ride> findByUserId(int userId) {
-//		String jpql = "SELECT r FROM Ride r WHERE r.userId = :userId";
-//		TypedQuery<Ride> query = entityManager.createQuery(jpql, Ride.class);
-//		query.setParameter("userId", userId);
-//		return query.getResultList();
-//	}
 
 	public List<Ride> findByUserId(int userId) {
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();

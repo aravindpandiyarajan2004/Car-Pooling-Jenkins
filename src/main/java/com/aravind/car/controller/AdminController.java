@@ -98,15 +98,7 @@ public class AdminController {
 		return bookingService.getPendingBookings();
 	}
 
-//	@PutMapping("bookingStatus/{id}")
-//	public String updateBookingStatus(@PathVariable int id, @RequestBody Booking updatedBooking) {
-//		Booking existingBooking = bookingService.getBooking(id);
-//		if (existingBooking != null) {
-//			existingBooking.setBookingStatus(updatedBooking.getBookingStatus());
-//			return bookingService.addBooking(existingBooking);
-//		}
-//		return null;
-//	
+	
 	@PutMapping("/bookingStatus/{id}")
 	public ResponseEntity<String> updateBookingStatus(@PathVariable int id, @RequestBody Booking updateRequest) {
 		boolean updated = bookingService.updateBookingStatus(id, updateRequest.getBookingStatus());
@@ -126,10 +118,6 @@ public class AdminController {
 		return rideService.getDistinctEndPoints();
 	}
 	
-//	 @GetMapping("/userStatus")
-//	    public List<User> getUserStatus(@RequestParam String accountStatus) {
-//	        return userService.findUserStatus(accountStatus);
-//	    }
 	@GetMapping("/userStatusSummary")
 	public ResponseEntity<Map<String, Integer>> getUserStatusSummary() {
 	    Map<String, Integer> statusCounts = new HashMap<>();
