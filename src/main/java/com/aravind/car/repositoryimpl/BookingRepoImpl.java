@@ -101,7 +101,7 @@ public class BookingRepoImpl implements BookingRepo {
 			Booking booking = entityManager.find(Booking.class, bookingId);
 			if (booking != null) {
 				booking.setBookingStatus(bookingStatus);
-				entityManager.merge(booking); // Update the entity
+				entityManager.persist(booking); // Update the entity
 				return true;
 			}
 			return false;
@@ -147,7 +147,7 @@ public class BookingRepoImpl implements BookingRepo {
 		payment.setAmount(amount);
 		payment.setUser(booking.getUser());
 		payment.setStatus("Pending");
-		entityManager.persist(payment);
+		entityManager.merge(payment);
 
 		// Associate payment with booking
 		booking.setPayment(payment);
